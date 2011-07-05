@@ -15,6 +15,7 @@ import org.eclipse.xtext.common.types.JvmType
 import org.example.domainmodel.domainmodel.Entity
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.scoping.impl.SimpleScope
 
 class DomainmodelScopeProvider extends XbaseScopeProvider {
 
@@ -26,6 +27,10 @@ class DomainmodelScopeProvider extends XbaseScopeProvider {
 				val descriptions = (context as Operation).params.map(e | e.createIEObjectDescription())
 				return MapBasedScope::createScope(
 						super.createLocalVarScope(context, reference, parent, includeCurrentBlock, idx), descriptions);	
+		}
+		if (context instanceof Entity) {
+			val type = (context as Entity).jvmType
+			return new SimpleScope(parent, newImmutableList(EObjectDescription::create(XbaseScopeProvider::THIS, type)))
 		}
 		return super.createLocalVarScope(context, reference, parent, includeCurrentBlock, idx)
 	}
