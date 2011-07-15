@@ -3,7 +3,6 @@ package org.example.domainmodel.validation;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.typing.XbaseTypeConformanceComputer;
-import org.eclipse.xtext.xbase.validation.XbaseJavaValidator;
 import org.example.domainmodel.domainmodel.DomainmodelPackage;
 import org.example.domainmodel.domainmodel.Operation;
 import org.example.domainmodel.typing.DomainmodelTypeProvider;
@@ -12,7 +11,7 @@ import com.google.inject.Inject;
 
 
 @SuppressWarnings("restriction")
-public class DomainmodelJavaValidator extends XbaseJavaValidator {
+public class DomainmodelJavaValidator extends AbstractDomainmodelJavaValidator {
 	
 	@Inject
 	private XbaseTypeConformanceComputer typeConformanceComputer;
