@@ -16,15 +16,6 @@ class GeneratorNameProvider {
 		entity.name.toQualifiedName
 	}
 	
-	/* For DataTypes inside of java.lang only the simpleName */
-	def dispatch qualifiedName(DataType dataType){
-		val packageDeclaration = getContainerOfType(dataType, typeof(PackageDeclaration));
-		if(packageDeclaration == null || packageDeclaration.name.equals("java.lang"))
-			return dataType.name.toQualifiedName
-		else
-			(packageDeclaration.name + "." + dataType.name).toQualifiedName
-	}
-	
 	def dispatch qualifiedName(EObject eObject){
 		qualifiedNameProvider.getFullyQualifiedName(eObject)
 	}
