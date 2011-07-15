@@ -1,10 +1,8 @@
 package org.example.domainmodel.validation;
 
-import org.eclipse.xtext.xbase.validation.XbaseJavaValidator;
  
 
-@SuppressWarnings("restriction")
-public class DomainmodelJavaValidator extends XbaseJavaValidator {
+public class DomainmodelJavaValidator extends AbstractDomainmodelJavaValidator {
 
 //	@Check
 //	public void checkGreetingStartsWithCapital(Greeting greeting) {
