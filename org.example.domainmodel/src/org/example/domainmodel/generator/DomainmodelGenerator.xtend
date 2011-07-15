@@ -22,19 +22,21 @@ class DomainmodelGenerator implements IGenerator {
         }
     }
     
-    def compile(Entity e) 
+    def compile(Entity e) {
+    	val importManager = new ImportManager(true)
+    	val body = e.body(importManager)
     	''' 
-		«val importManager = new ImportManager(true)»
+
 		«IF e.eContainer != null»
 			package «e.eContainer.fullyQualifiedName»;
 		«ENDIF»
-		«val body = e.body(importManager)»
+		
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
 		«body»
        '''
-    
+    }
     def body(Entity e, ImportManager importManager){
     	'''
 		public class «e.name» «IF e.superType != null»extends «e.superType.shortName(importManager)» «ENDIF»{
